@@ -15,7 +15,7 @@ public class LivelloDifficolta {
     }
 
     public void addDomanda(String domanda, Risposta[] risposte){
-        this.domande.add(new Domanda(domanda, this.domande.size(), risposte)); //auto increment id
+        //this.domande.add(new Domanda(domanda, this.domande.size(), risposte)); //auto increment id
     }
 
     public void editDomanda(String domanda, String newTitolo){

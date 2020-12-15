@@ -1,10 +1,12 @@
 import UI.Admin;
 import UI.Game;
 import com.sun.media.sound.RIFFInvalidDataException;
+import models.Livello;
 import models.Quiz;
 import models.Risposta;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
@@ -29,11 +31,14 @@ public class Main {
          */
 
         Quiz q = new Quiz("Quiz di thomas");
-        q.addLivelloDifficolta("Facile");
-        q.addLivelloDifficolta("Medio");
         Risposta [] rispostas = {new Risposta("thomas", true)};
-        q.addDomanda("Come si chiama thomas?", "Facile",rispostas);
-        System.out.println(q);
+        q.addDomanda("Come si chiama thomas?",rispostas, Livello.FACILE);
+        q.addDomanda("Come si chiama giovanni?",rispostas, Livello.FACILE);
+        q.addDomanda("Come si chiama marco?",rispostas, Livello.FACILE);
+        q.addDomanda("Come si chiama asd?",rispostas, Livello.FACILE);
+        q.addDomanda("Come si chiama qwe?",rispostas, Livello.DIFFICILE);
+        q.addDomanda("Come si chiama yx?",rispostas, Livello.DIFFICILE);
+        System.out.println(q.getRandomFour(Livello.FACILE));
 
 }
 }
