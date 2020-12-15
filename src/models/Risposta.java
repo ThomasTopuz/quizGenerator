@@ -28,4 +28,13 @@ public class Risposta {
     public void setCorrect(boolean correct) {
         isCorrect = correct;
     }
+
+    @Override
+    public String toString() {
+        return "Risposta{" +
+                "id=" + id +
+                ", titolo='" + titolo + '\'' +
+                ", isCorrect=" + isCorrect +
+                '}';
+    }
 }
