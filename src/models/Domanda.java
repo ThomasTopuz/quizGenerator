@@ -3,10 +3,13 @@ package models;
 import java.util.ArrayList;
 
 public class Domanda {
+    private static int currId = 0;
+    private int id;
     private String titolo;
     private ArrayList<Risposta> risposte  = new ArrayList<>();
 
-    public Domanda(String titolo) {
+    public Domanda(String titolo, int id) {
+        this.id = id;
         this.titolo = titolo;
     }
 
