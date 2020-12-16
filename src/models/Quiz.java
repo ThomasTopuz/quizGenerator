@@ -65,7 +65,7 @@ public class Quiz implements Serializable {
         return domandeRandom;
     }
 
-    private ArrayList<Domanda> getByLevel(Livello l){
+    public ArrayList<Domanda> getByLevel(Livello l){
         ArrayList<Domanda> domande = new ArrayList<>();
         for(int i = 0; i<this.domande.size(); i++){
             if(this.domande.get(i).getL().equals(l)){
@@ -77,7 +77,7 @@ public class Quiz implements Serializable {
 
     @Override
     public String toString() {
-        String build = nome+" \n";
+        String build = "Quiz: " + nome + " \n";
         for(int i = 0; i<this.domande.size();i++){
             build+="\t" + domande.get(i).toString()+"\n";
         }

@@ -1,6 +1,8 @@
 package models;
 
-public class Risposta {
+import java.io.Serializable;
+
+public class Risposta implements Serializable {
     private String titolo;
     private boolean isCorrect;
 

@@ -1,9 +1,10 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Domanda {
+public class Domanda implements Serializable {
     private String titolo;
     private Risposta[] risposte;
     private Livello l;
@@ -60,7 +61,7 @@ public class Domanda {
 
     @Override
     public String toString() {
-        String build = this.l+": " + this.titolo +"\n";
+        String build = this.titolo +"\n";
         String [] prefix = {"a)","b)","c)","d)"};
         for(int i = 0; i<risposte.length;i++){
             build+="\t"+prefix[i]+""+risposte[i].toString()+"\n";
