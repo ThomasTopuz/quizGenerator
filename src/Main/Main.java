@@ -2,6 +2,7 @@ package Main;
 
 import UI.Admin;
 import UI.Game;
+import UI.ImportExport;
 import UI.Printer;
 import models.Livello;
 import models.Quiz;
@@ -15,6 +16,7 @@ public class Main {
     public static Quiz q = new Quiz();
 
     public static void main(String[] args) {
+        q = ImportExport.readFromFile("test.bin");
         Start();
     }
 

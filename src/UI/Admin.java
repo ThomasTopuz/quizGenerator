@@ -20,7 +20,8 @@ public class Admin {
             System.out.println("1. Crea un nuovo quiz da zero");
             System.out.println("2. Modifica il quiz");
             System.out.println("3. importa un quiz");
-            System.out.println("4. Menu principale");
+            System.out.println("4. Stampa quiz");
+            System.out.println("5. Menu principale");
             String s = sc.nextLine();
             if (s.equals("1")) {
                 flag = false;
@@ -29,13 +30,13 @@ public class Admin {
                 flag = false;
                 modificaQuiz();
             } else if (s.equals("3")) {
-                flag = false;
                 importQuiz();
             } else if (s.equals("4")) {
-                flag = false;
-                return q;
+                Printer.PrintQuizAdmin(q);
             } else if (s.equals("5")) {
                 Printer.PrintQuizAdmin(q);
+                flag = false;
+                return q;
             } else {
                 System.out.println("Errore di inserimento! \n");
             }
