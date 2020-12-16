@@ -31,8 +31,13 @@ public class Risposta implements Serializable {
         isCorrect = correct;
     }
 
-    @Override
-    public String toString() {
-        return " " + this.titolo+"\n";
+    public String toStringAdmin() {
+        //red--> wrong answare greeen-->correct answere
+        String titoloColored = (this.isCorrect) ? "\u001B[32m" + this.titolo + "\u001B[0m" : "\u001B[31m" + this.titolo + "\u001B[0m";
+        return " " + titoloColored + "\n";
+    }
+    public String toString(){
+        String titolo = this.titolo;
+        return " " + titolo + "\n";
     }
 }

@@ -8,7 +8,7 @@ import java.io.*;
 public class ImportExport {
     static Quiz q = Main.q;
 
-    public static void saveToFile(String fileName) {
+    public static void saveToFile(String fileName, Quiz q) {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
             os.writeObject(q);

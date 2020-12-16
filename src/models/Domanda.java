@@ -2,7 +2,7 @@ package models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Arrays;
 
 public class Domanda implements Serializable {
     private String titolo;
@@ -35,36 +35,63 @@ public class Domanda implements Serializable {
     }
 
 
-    public void editRisposta(String newTitolo, boolean newIsCorrect, String oldTitolo){
+    public void editRisposta(String newTitolo, boolean newIsCorrect, String oldTitolo) {
         Risposta r = getByRisposta(oldTitolo);
         r.setTitolo(newTitolo);
         r.setCorrect(newIsCorrect);
     }
 
-    private Risposta getByRisposta(String r){
-        for(int i = 0; i<this.risposte.length;i++){
-            if(this.risposte[i].getTitolo().equals(r)){
+    private Risposta getByRisposta(String r) {
+        for (int i = 0; i < this.risposte.length; i++) {
+            if (this.risposte[i].getTitolo().equals(r)) {
                 return this.risposte[i];
             }
         }
         return null;
     }
 
-    public boolean isCorrect(String titolo){
-        for(int i = 0; i<risposte.length;i++){
-            if(risposte[i].getTitolo().equals(titolo)){
+    public boolean isCorrect(String lettera) {
+        ArrayList <String> lettere = new ArrayList<>(Arrays.asList("a","b","c","d"));
+        String titolo = this.risposte[lettere.indexOf(lettera)].getTitolo();
+        for (int i = 0; i < risposte.length; i++) {
+            if (risposte[i].getIsCorrect() && risposte[i].getTitolo().equals(titolo)){
                 return true;
             }
         }
         return false;
     }
 
+    public Risposta[] getTwoWrong() {
+        Risposta[] risposteWrong = new Risposta[3];
+        Risposta[] twoWrong = new Risposta[2];
+        int c = 0;
+        for (int i = 0; i < risposte.length; i++) {
+            if (!risposte[i].getIsCorrect()) {
+                risposteWrong[c] = risposte[i];
+                c++;
+            }
+        }
+        for (int i = 0; i < 2; i++) {
+            int index = (int) (Math.random() * 3);
+            twoWrong[i] = risposteWrong[index];
+        }
+        return twoWrong;
+    }
+
     @Override
     public String toString() {
-        String build = this.titolo +"\n";
-        String [] prefix = {"a)","b)","c)","d)"};
-        for(int i = 0; i<risposte.length;i++){
-            build+="\t"+prefix[i]+""+risposte[i].toString()+"\n";
+        String build = this.titolo + "\n";
+        String[] prefix = {"a)", "b)", "c)", "d)"};
+        for (int i = 0; i < risposte.length; i++) {
+            build += "\t" + prefix[i] + "" + risposte[i].toString() + "\n";
+        }
+        return build;
+    }
+    public String toStringAdmin(){
+        String build = this.titolo + "\n";
+        String[] prefix = {"a)", "b)", "c)", "d)"};
+        for (int i = 0; i < risposte.length; i++) {
+            build += "\t" + prefix[i] + "" + risposte[i].toStringAdmin() + "\n";
         }
         return build;
     }
