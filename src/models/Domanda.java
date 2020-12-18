@@ -18,6 +18,14 @@ public class Domanda implements Serializable {
         this.l = l;
     }
 
+    public Risposta[] getRisposte() {
+        return risposte;
+    }
+
+    public void setRisposte(Risposta[] risposte) {
+        this.risposte = risposte;
+    }
+
     public String getTitolo() {
         return titolo;
     }

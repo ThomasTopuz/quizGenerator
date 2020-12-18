@@ -16,7 +16,7 @@ public class Main {
     public static Quiz q = new Quiz();
 
     public static void main(String[] args) {
-        q = ImportExport.readFromFile("test.bin");
+        q = ImportExport.readFromFile("quiz.bin");
         Start();
     }
 
