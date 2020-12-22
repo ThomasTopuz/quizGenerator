@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public class Printer {
 
     public static void PrintQuizAdmin(Quiz q) {
+        if(q.getNome()==null){
+            System.out.println("Non hai importato nessun quiz! \n");
+            return;
+        }
         System.out.println("Nome del quiz: " + q.getNome());
         System.out.println("\nDomande e risposte livello FACILE");
         domandePrinterAdmin(q.getByLevel(Livello.FACILE));
@@ -19,6 +23,14 @@ public class Printer {
 
         System.out.println("\nDomande e risposte livello DIFFICILE");
         domandePrinterAdmin(q.getByLevel(Livello.DIFFICILE));
+
+        System.out.println("Statistiche:");
+        try{
+            System.out.println(q.getStats());
+        }catch (Exception e) {
+            System.out.println("Per avere le statistiche gioca almeno una partita! \n");
+        }
+
     }
 
     private static void domandePrinterAdmin(ArrayList<Domanda> domande) {
@@ -37,6 +49,8 @@ public class Printer {
 
         System.out.println("\nDomande e risposte livello DIFFICILE");
         domandePrinterAdmin(q.getByLevel(Livello.DIFFICILE));
+
+
     }
 
     private static void domandePrinterGame(ArrayList<Domanda> domande) {

@@ -13,14 +13,15 @@ public class Admin {
     static Scanner sc = new Scanner(System.in);
     static Quiz q = Main.q; //import the quiz
 
-    public static Quiz Start() {
+    public static Quiz Start(Quiz _q) {
+        q = _q;
         System.out.println("Area amministrativa:");
         boolean flag = true;
         do {
             System.out.println("1. Crea un nuovo quiz da zero");
             System.out.println("2. Modifica il quiz");
             System.out.println("3. importa un quiz");
-            System.out.println("4. Stampa quiz");
+            System.out.println("4. Stampa quiz con risposte e le statistiche");
             System.out.println("5. Menu principale");
             String s = sc.nextLine();
             if (s.equals("1")) {
@@ -34,9 +35,7 @@ public class Admin {
             } else if (s.equals("4")) {
                 Printer.PrintQuizAdmin(q);
             } else if (s.equals("5")) {
-                Printer.PrintQuizAdmin(q);
                 flag = false;
-                return q;
             } else {
                 System.out.println("Errore di inserimento! \n");
             }
@@ -56,7 +55,7 @@ public class Admin {
 
         System.out.println("Inserisci le domande (min 4) e risposte per il livello DIFFICILE: ");
         createQuestionsForLevel(Livello.DIFFICILE);
-        System.out.println(q);
+        Printer.PrintQuizAdmin(q);
 
         saveQuiz();
 
@@ -199,8 +198,8 @@ public class Admin {
                 }
             }
         }
-        saveQuiz();
-        Start();
+        saveQuizEdited();
+        Start(q);
     }
 
     private static void eliminaDomanda(Livello l) {
@@ -212,8 +211,8 @@ public class Admin {
         String n = sc.nextLine();
         int num = Integer.parseInt(n);
         q.removeDomanda(domandeLivello.get(num - 1).getTitolo());
-        saveQuiz();
-        Start();
+        saveQuizEdited();
+        Start(q);
     }
 
     private static void importQuiz() {
@@ -222,16 +221,23 @@ public class Admin {
         fileName += ".bin";
         q = ImportExport.readFromFile(fileName);
         Printer.PrintQuizAdmin(q);
-        Start();
+        Start(q);
     }
 
     private static void saveQuiz() {
         System.out.println("Hai creato/modificato il quiz, inserisci il nome del file dove lo vuoi salvare (senza estensione) \n");
         String fileName = sc.nextLine();
         fileName += ".bin";
+        q.setFilename(fileName);
         ImportExport.saveToFile(fileName, q);
         Printer.PrintQuizAdmin(q);
-        Start();
+        Start(q);
+    }
+
+    private static void saveQuizEdited(){
+        ImportExport.saveToFile(q.getFilename(), q);
+        Printer.PrintQuizAdmin(q);
+        Start(q);
     }
 
 

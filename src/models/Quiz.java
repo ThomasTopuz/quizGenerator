@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 public class Quiz implements Serializable {
     private String nome;
+    private String filename;
     private ArrayList<Domanda> domande = new ArrayList<>();
+    private Statistica stats = new Statistica();
 
     public Quiz() {
     }
@@ -26,6 +28,21 @@ public class Quiz implements Serializable {
         this.nome = nome;
     }
 
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public Statistica getStats() {
+        return stats;
+    }
+
+    public void setStats(Statistica stats) {
+        this.stats = stats;
+    }
 
     public void addDomanda(String domanda, Risposta[] risposte, Livello l) {
         this.domande.add(new Domanda(domanda, risposte, l)); //auto increment id
@@ -80,6 +97,12 @@ public class Quiz implements Serializable {
         return getDomandaByTitolo(domanda).getTwoWrong();
     }
 
+    public void addWin(){
+        this.stats.addWin();
+    }
+    public void addLoss(){
+        this.stats.addLoss();
+    }
     @Override
     public String toString() {
         String build = "Quiz: " + nome + " \n";

@@ -14,7 +14,7 @@ public class Game {
     static Quiz q = Main.q;
     static boolean jollyUsed = false;
 
-    public static void Start() {
+    public static Quiz Start() {
         jollyUsed = false;
         System.out.println("-------------------GIOCA AL QUIZ--------------------");
         System.out.println("REGOLE: \n 1. Se sbagli 1 risposta hai perso \n 2. Hai a disposizione 1 jolly per partita, questo ti permette di eliminare 2 risposte sbagliate, dita 'j' per usarlo");
@@ -23,6 +23,8 @@ public class Game {
         giocaLivello(Livello.MEDIO);
         giocaLivello(Livello.DIFFICILE);
         System.out.println("\u001B[32m" + "Bravo, sei riuscito a completare il quiz!! :)" + "\u001B[0m");
+        q.addWin();
+        return q;
     }
 
     private static void giocaLivello(Livello l) {
@@ -50,11 +52,10 @@ public class Game {
                 System.out.println("\u001B[32m" + "Risposta corretta :)" + "\u001B[0m" + "\n");
             } else {
                 System.out.println("\u001B[31m" + "Risposta errata, hai perso :(" + "\u001B[0m" + "\n");
+                q.addLoss();
                 Main.Start();
                 break;
             }
-
-
         }
     }
 

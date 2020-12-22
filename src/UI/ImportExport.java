@@ -26,7 +26,7 @@ public class ImportExport {
             importedQuiz = (Quiz) is.readObject();
             System.out.println(importedQuiz);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("File non trovato!");
         }
         return importedQuiz;
     }

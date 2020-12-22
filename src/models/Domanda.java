@@ -1,8 +1,11 @@
 package models;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Domanda implements Serializable {
     private String titolo;
@@ -70,18 +73,19 @@ public class Domanda implements Serializable {
     }
 
     public Risposta[] getTwoWrong() {
-        Risposta[] risposteWrong = new Risposta[3];
         Risposta[] twoWrong = new Risposta[2];
-        int c = 0;
-        for (int i = 0; i < risposte.length; i++) {
-            if (!risposte[i].getIsCorrect()) {
-                risposteWrong[c] = risposte[i];
-                c++;
-            }
-        }
+        List <Risposta> _risposte =  new LinkedList<Risposta>(Arrays.asList(this.risposte));  //avoid unsupported operation exception
         for (int i = 0; i < 2; i++) {
-            int index = (int) (Math.random() * 3);
-            twoWrong[i] = risposteWrong[index];
+            boolean done = false;
+            while(!done){
+                int index = (int) (Math.random() * _risposte.size());
+                if (!_risposte.get(index).getIsCorrect()) {
+                    twoWrong[i] = _risposte.get(index);
+                    _risposte.remove(index);
+                    done = true;
+                }
+            }
+
         }
         return twoWrong;
     }
