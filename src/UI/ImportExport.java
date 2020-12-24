@@ -8,6 +8,13 @@ import java.io.*;
 public class ImportExport {
     static Quiz q = Main.q;
 
+    /**
+     * funzione per salvare il quiz su un file .bin
+     * @param fileName
+     * nome del file dove salvare il quiz
+     * @param q
+     * il quiz da salvare sul file
+     */
     public static void saveToFile(String fileName, Quiz q) {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
@@ -19,12 +26,18 @@ public class ImportExport {
         }
     }
 
+    /**
+     * funzione che ritorna il quiz letto da un file .bin, usato per importare un quiz creato in precedenza
+     * @param fileName
+     * nome del file da dove leggere il quiz
+     * @return
+     * ritorna il quiz letto dal file
+     */
     public static Quiz readFromFile(String fileName) {
         Quiz importedQuiz = new Quiz();
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
             importedQuiz = (Quiz) is.readObject();
-            System.out.println(importedQuiz);
         } catch (Exception e) {
             System.out.println("File non trovato!");
         }

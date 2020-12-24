@@ -1,8 +1,5 @@
 package models;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-import org.omg.CORBA.ARG_IN;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,6 +12,11 @@ public class Quiz implements Serializable {
     public Quiz() {
     }
 
+    /***
+     *x
+     * @param nome
+     * oggetto quiz, che rappresenta il quiz, contiene un arraylist di Domanda
+     */
     public Quiz(String nome) {
         this.nome = nome;
     }
@@ -40,22 +42,35 @@ public class Quiz implements Serializable {
         return stats;
     }
 
-    public void setStats(Statistica stats) {
-        this.stats = stats;
-    }
-
+    /**
+     * aggiunge una domanda al quiz
+     * @param domanda
+     * titolo della domanda
+     * @param risposte
+     * array di risposte della domanda
+     * @param l
+     * livello della domanda
+     */
     public void addDomanda(String domanda, Risposta[] risposte, Livello l) {
         this.domande.add(new Domanda(domanda, risposte, l)); //auto increment id
     }
 
-    public void editDomanda(String domanda, String newTitolo) {
-        getDomandaByTitolo(domanda).setTitolo(newTitolo);
-    }
-
+    /**
+     * rimuove una domanda dal quiz
+     * @param domanda
+     * domanda da rimuovere
+     */
     public void removeDomanda(String domanda) {
         this.domande.remove(getDomandaByTitolo(domanda));
     }
 
+    /**
+     * 
+     * @param titolo
+     * titolo della domanda
+     * @return
+     * Domanda con il titolo fornito
+     */
     private Domanda getDomandaByTitolo(String titolo) {
         for (int i = 0; i < this.domande.size(); i++) {
             if (this.domande.get(i).getTitolo().equals(titolo)) {
@@ -65,15 +80,16 @@ public class Quiz implements Serializable {
         return null;
     }
 
-
-    public void editRisposta(String risposta, String newRisposta, boolean newIsCorrect, String domanda) {
-        getDomandaByTitolo(domanda).editRisposta(newRisposta, newIsCorrect, risposta);
-    }
-
-
-    public ArrayList<Domanda> getRandomFour(Livello l) {
+    /**
+     * 
+     * @param l
+     * livello che si sta giocando
+     * @return
+     * Arraylist di 4 Domanda, sono le 4 domande pescate dal livello l
+     */
+    public ArrayList<Domanda> getDomandeRandomFour(Livello l) {
         ArrayList<Domanda> domandeRandom = new ArrayList<>();
-        ArrayList<Domanda> domandeLivello = getByLevel(l);
+        ArrayList<Domanda> domandeLivello = getDomandeByLevel(l);
 
         for (int i = 0; i < 4; i++) {
             int index = (int) ((Math.random() * domandeLivello.size())); // generate random index
@@ -83,7 +99,14 @@ public class Quiz implements Serializable {
         return domandeRandom;
     }
 
-    public ArrayList<Domanda> getByLevel(Livello l) {
+    /**
+     * 
+     * @param l
+     * livello delle domande
+     * @return
+     * ArrayList di Domanda con il livello l
+     */
+    public ArrayList<Domanda> getDomandeByLevel(Livello l) {
         ArrayList<Domanda> domande = new ArrayList<>();
         for (int i = 0; i < this.domande.size(); i++) {
             if (this.domande.get(i).getL().equals(l)) {
@@ -93,16 +116,6 @@ public class Quiz implements Serializable {
         return domande;
     }
 
-    public Risposta[] getTwoWrong(String domanda) {
-        return getDomandaByTitolo(domanda).getTwoWrong();
-    }
-
-    public void addWin(){
-        this.stats.addWin();
-    }
-    public void addLoss(){
-        this.stats.addLoss();
-    }
     @Override
     public String toString() {
         String build = "Quiz: " + nome + " \n";
@@ -112,7 +125,13 @@ public class Quiz implements Serializable {
         return build;
     }
 
-    public String toStringAdmin(){
+    /**
+     * 
+     * @return
+     * stringa che rappresenta il quiz, a differenza del tostring normale,
+     *  questo indica con colori diversi risposte corrette (verdi) e sbagliate (rosse)
+     */
+    public String toStringAdmin() {
         String build = "Quiz: " + nome + " \n";
         for (int i = 0; i < this.domande.size(); i++) {
             build += "\t" + domande.get(i).toStringAdmin() + "\n";

@@ -13,9 +13,15 @@ public class Admin {
     static Scanner sc = new Scanner(System.in);
     static Quiz q = Main.q; //import the quiz
 
+    /**
+     * menu dell'area amministrativa
+     * @param _q
+     * quiz da passare all'area amministrativa
+     * @return
+     */
     public static Quiz Start(Quiz _q) {
         q = _q;
-        System.out.println("Area amministrativa:");
+        System.out.println("------------------AREA AMMINISTRATIVA------------------");
         boolean flag = true;
         do {
             System.out.println("1. Crea un nuovo quiz da zero");
@@ -43,17 +49,29 @@ public class Admin {
         return q;
     }
 
+    /**
+     * permette di creare un nuovo quiz, scegliendone il nome
+     */
     private static void creaNuovoQuiz() {
-        System.out.print("Inserisci un nome per il tuo quiz: ");
-        q.setNome(sc.nextLine());
+        boolean correct = false;
+        String quizName = "";
+        while (!correct) {
+            System.out.print("Inserisci un nome per il tuo quiz (min 1 carattere): ");
+            quizName = sc.nextLine();
+            if (quizName.length() > 0) {
+                correct = true;
+            }
+        }
 
-        System.out.println("Inserisci le domande (min 4) e risposte per il livello FACILE: ");
+        q.setNome(quizName);
+
+        System.out.println("\nInserisci le domande (min 4) e risposte per il livello FACILE: ");
         createQuestionsForLevel(Livello.FACILE);
 
-        System.out.println("Inserisci le domande (min 4) e risposte per il livello MEDIO: ");
+        System.out.println("\nInserisci le domande (min 4) e risposte per il livello MEDIO: ");
         createQuestionsForLevel(Livello.MEDIO);
 
-        System.out.println("Inserisci le domande (min 4) e risposte per il livello DIFFICILE: ");
+        System.out.println("\nInserisci le domande (min 4) e risposte per il livello DIFFICILE: ");
         createQuestionsForLevel(Livello.DIFFICILE);
         Printer.PrintQuizAdmin(q);
 
@@ -61,11 +79,23 @@ public class Admin {
 
     }
 
+    /**
+     * permette di creare la domanda per un determinato livello
+     * @param l
+     * livello della domanda da creare
+     */
     private static void createQuestionsForLevel(Livello l) {
         int counter = 0;
         while (counter < 4) {
-            System.out.println("Inserisci domanda " + (counter + 1) + ":");
-            String questionName = sc.nextLine();
+            boolean correct = false;
+            String questionName = "";
+            while (!correct) {
+                System.out.print("Inserisci domanda " + (counter + 1) + " (min 1 carattere): ");
+                questionName = sc.nextLine();
+                if (questionName.length() > 0) {
+                    correct = true;
+                }
+            }
             Risposta[] risposte = createAnswareForQuestion(questionName);
             q.addDomanda(questionName, risposte, l);
             counter++;
@@ -104,13 +134,28 @@ public class Admin {
 
     }
 
+    /**
+     * permette l'inserimento delle 4 risposte per la domanda
+     * @param questionName
+     * nome della domanda
+     * @return
+     * array di 4 Risposta
+     */
     private static Risposta[] createAnswareForQuestion(String questionName) {
         boolean correctInsert = false;
         Risposta[] risposte = new Risposta[4];
-        System.out.println("Inserisci le 4 risposte per la domanda \"" + questionName + "\" . per indicare quella corretta, terminala con '-c' \n");
+        System.out.println("\nInserisci le 4 risposte per la domanda '" + questionName + "'; per indicare quella corretta, terminala con '-c' ");
         for (int i = 0; i < 4; i++) {
-            System.out.println("Inserisci risposta " + (i + 1) + " per la domanda: " + "\"" + questionName + "\"");
-            String risposta = sc.nextLine();
+            boolean correct = false;
+            String risposta = "";
+            while (!correct) {
+                System.out.print("Inserisci risposta " + (i + 1) + " per la domanda '" + questionName + "' :");
+                risposta = sc.nextLine();
+                if (risposta.length() > 0) {
+                    correct = true;
+                }
+            }
+
             if (risposta.contains("-c") && !correctInsert) {
                 System.out.println("Hai inserito la risposta corretta!");
                 String rispostaPatch = risposta.substring(0, risposta.length() - 2);
@@ -130,6 +175,9 @@ public class Admin {
         return risposte;
     }
 
+    /**
+     * modifica il quiz, scelta del livello da modificare 
+     */
     private static void modificaQuiz() {
         System.out.println("Che livello vuoi modificare");
         System.out.println("1. Facile");
@@ -149,12 +197,18 @@ public class Admin {
         }
     }
 
+    /**
+     * permette di scegliere se aggiungere una domanda o eliminare una domanda, note che se il livello dato ha 4 domande,
+     *  non sara possibile eliminarne ulteriori
+     * @param l
+     * il livello da modificare
+     */
     private static void modificaLivello(Livello l) {
         do {
-            System.out.println("Vuoi eliminare o aggiungere domande? (el / agg)");
+            System.out.print("Vuoi eliminare o aggiungere domande? (el / agg): ");
             String scl = sc.nextLine();
             if (scl.equals("el")) {
-                if (q.getByLevel(l).size() == 4) {
+                if (q.getDomandeByLevel(l).size() == 4) {
                     System.out.println("Attenzione! non puoi eliminare domande per questo livello, ogni livello deve avere minimo 4 domande.");
                     modificaQuiz();
                     break;
@@ -171,13 +225,27 @@ public class Admin {
 
     }
 
+    /**
+     * metodo per aggiungere una domanda ad un quiz (nella modalita di modifica)
+     * @param l
+     * il livello dove aggiungere la domanda
+     */
     private static void aggiungiDomanda(Livello l) {
         boolean flag = true;
-        int counter = q.getByLevel(l).size();
+        int counter = q.getDomandeByLevel(l).size();
 
         while (flag) {
-            System.out.println("Inserisci domanda " + (counter + 1) + ":");
-            String questionName = sc.nextLine();
+
+            boolean correct = false;
+            String questionName = "";
+            while (!correct) {
+                System.out.print("\n Inserisci domanda " + (counter + 1) + " (min 1 carattere): ");
+                questionName = sc.nextLine();
+                if (questionName.length() > 0) {
+                    correct = true;
+                }
+            }
+
             Risposta[] risposte = createAnswareForQuestion(questionName);
             q.addDomanda(questionName, risposte, l);
             counter++;
@@ -185,7 +253,7 @@ public class Admin {
             String s;
 
             while (true) {
-                System.out.println("Continuare a inserire domande per questo livello? (s/n)");
+                System.out.print("Continuare a inserire domande per questo livello? (s/n): ");
                 s = sc.nextLine();
                 if (s.equals("s")) {
                     flag = true;
@@ -202,8 +270,13 @@ public class Admin {
         Start(q);
     }
 
+    /**
+     *
+     * @param l
+     * livello dove si trova la domanda da eliminare
+     */
     private static void eliminaDomanda(Livello l) {
-        ArrayList<Domanda> domandeLivello = q.getByLevel(l);
+        ArrayList<Domanda> domandeLivello = q.getDomandeByLevel(l);
         for (int i = 1; i <= domandeLivello.size(); i++) {
             System.out.println(i + ". " + domandeLivello.get(i - 1).getTitolo());
         }
@@ -215,8 +288,11 @@ public class Admin {
         Start(q);
     }
 
+    /**
+     * importa un quiz da un file
+     */
     private static void importQuiz() {
-        System.out.println("Inserisci il nome del file (senza estensione):");
+        System.out.print("Inserisci il nome del file (senza estensione): ");
         String fileName = sc.nextLine();
         fileName += ".bin";
         q = ImportExport.readFromFile(fileName);
@@ -224,8 +300,11 @@ public class Admin {
         Start(q);
     }
 
+    /**
+     * salva il quiz creando un nuovo file
+     */
     private static void saveQuiz() {
-        System.out.println("Hai creato/modificato il quiz, inserisci il nome del file dove lo vuoi salvare (senza estensione) \n");
+        System.out.print("Hai creato/modificato il quiz, inserisci il nome del file dove lo vuoi salvare (senza estensione): ");
         String fileName = sc.nextLine();
         fileName += ".bin";
         q.setFilename(fileName);
@@ -234,7 +313,12 @@ public class Admin {
         Start(q);
     }
 
-    private static void saveQuizEdited(){
+
+    /**
+     * funzione che salva il quiz su un file, ma non crea un nuovo file,
+     * aggiorna il file esistente
+     */
+    private static void saveQuizEdited() {
         ImportExport.saveToFile(q.getFilename(), q);
         Printer.PrintQuizAdmin(q);
         Start(q);

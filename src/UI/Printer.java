@@ -9,51 +9,43 @@ import java.util.ArrayList;
 
 public class Printer {
 
+    /**
+     * stampa il quiz per l'area amministrativa, indicando le risposte corrette (verde) e quelle sbagliate (rosso)
+     * @param q
+     * quiz da stampare
+     */
     public static void PrintQuizAdmin(Quiz q) {
-        if(q.getNome()==null){
+        if (q.getNome() == null) {
             System.out.println("Non hai importato nessun quiz! \n");
             return;
         }
         System.out.println("Nome del quiz: " + q.getNome());
         System.out.println("\nDomande e risposte livello FACILE");
-        domandePrinterAdmin(q.getByLevel(Livello.FACILE));
+        printDomande(q.getDomandeByLevel(Livello.FACILE));
 
         System.out.println("\nDomande e risposte livello MEDIO");
-        domandePrinterAdmin(q.getByLevel(Livello.MEDIO));
+        printDomande(q.getDomandeByLevel(Livello.MEDIO));
 
         System.out.println("\nDomande e risposte livello DIFFICILE");
-        domandePrinterAdmin(q.getByLevel(Livello.DIFFICILE));
+        printDomande(q.getDomandeByLevel(Livello.DIFFICILE));
 
         System.out.println("Statistiche:");
-        try{
+        try {
             System.out.println(q.getStats());
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Per avere le statistiche gioca almeno una partita! \n");
         }
 
     }
 
-    private static void domandePrinterAdmin(ArrayList<Domanda> domande) {
-        for (int i = 0; i < domande.size(); i++) {
-            System.out.println(domande.get(i).toStringAdmin());
-        }
-    }
-
-    public static void PrintQuizGame(Quiz q) {
-        System.out.println("Nome del quiz: " + q.getNome());
-        System.out.println("\nDomande e risposte livello FACILE");
-        domandePrinterAdmin(q.getByLevel(Livello.FACILE));
-
-        System.out.println("\nDomande e risposte livello MEDIO");
-        domandePrinterAdmin(q.getByLevel(Livello.MEDIO));
-
-        System.out.println("\nDomande e risposte livello DIFFICILE");
-        domandePrinterAdmin(q.getByLevel(Livello.DIFFICILE));
-
-
-    }
-
-    private static void domandePrinterGame(ArrayList<Domanda> domande) {
+    /**
+     * funzione che stampa le domande di un livello indicando le risposte corrette con il colore verde,
+     * e quelle sbagliate
+     * con il rosso
+     * @param domande
+     * domande da stampare
+     */
+    private static void printDomande(ArrayList<Domanda> domande) {
         for (int i = 0; i < domande.size(); i++) {
             System.out.println(domande.get(i).toStringAdmin());
         }
