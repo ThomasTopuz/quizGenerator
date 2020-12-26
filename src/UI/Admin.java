@@ -15,9 +15,9 @@ public class Admin {
 
     /**
      * menu dell'area amministrativa
-     * @param _q
-     * quiz da passare all'area amministrativa
-     * @return
+     *
+     * @param _q quiz da passare all'area amministrativa
+     * @return ritornan il quiz modificato/creato/importato da un file
      */
     public static Quiz Start(Quiz _q) {
         q = _q;
@@ -81,8 +81,8 @@ public class Admin {
 
     /**
      * permette di creare la domanda per un determinato livello
-     * @param l
-     * livello della domanda da creare
+     *
+     * @param l livello della domanda da creare
      */
     private static void createQuestionsForLevel(Livello l) {
         int counter = 0;
@@ -136,10 +136,9 @@ public class Admin {
 
     /**
      * permette l'inserimento delle 4 risposte per la domanda
-     * @param questionName
-     * nome della domanda
-     * @return
-     * array di 4 Risposta
+     *
+     * @param questionName nome della domanda
+     * @return array di 4 Risposta
      */
     private static Risposta[] createAnswareForQuestion(String questionName) {
         boolean correctInsert = false;
@@ -165,6 +164,9 @@ public class Admin {
             } else if (correctInsert && risposta.contains("-c")) {
                 String rispostaPatch = risposta.substring(0, risposta.length() - 2);
                 System.out.println("Attenzione, hai gia inserito una risposta corretta, ogni domanda può avere al massimo 1 risposta corretta, questa risposta verra salvata come incorretta!");
+                rispostaPatch = risposta.substring(0, risposta.length() - 2);
+                risposte[i] = new Risposta(rispostaPatch, false);
+                continue;
             } else if (!correctInsert && i == 3) {
                 System.out.println("Attenzione, non hai inserito risposte corrette, l'ultima risposta inserita verrà salvata come corretta.");
                 risposte[i] = new Risposta(risposta, true);
@@ -176,7 +178,7 @@ public class Admin {
     }
 
     /**
-     * modifica il quiz, scelta del livello da modificare 
+     * modifica il quiz, scelta del livello da modificare
      */
     private static void modificaQuiz() {
         System.out.println("Che livello vuoi modificare");
@@ -199,9 +201,9 @@ public class Admin {
 
     /**
      * permette di scegliere se aggiungere una domanda o eliminare una domanda, note che se il livello dato ha 4 domande,
-     *  non sara possibile eliminarne ulteriori
-     * @param l
-     * il livello da modificare
+     * non sara possibile eliminarne ulteriori
+     *
+     * @param l il livello da modificare
      */
     private static void modificaLivello(Livello l) {
         do {
@@ -227,8 +229,8 @@ public class Admin {
 
     /**
      * metodo per aggiungere una domanda ad un quiz (nella modalita di modifica)
-     * @param l
-     * il livello dove aggiungere la domanda
+     *
+     * @param l il livello dove aggiungere la domanda
      */
     private static void aggiungiDomanda(Livello l) {
         boolean flag = true;
@@ -271,9 +273,7 @@ public class Admin {
     }
 
     /**
-     *
-     * @param l
-     * livello dove si trova la domanda da eliminare
+     * @param l livello dove si trova la domanda da eliminare
      */
     private static void eliminaDomanda(Livello l) {
         ArrayList<Domanda> domandeLivello = q.getDomandeByLevel(l);

@@ -16,12 +16,6 @@ public class Statistica implements Serializable {
     public Statistica() {
     }
 
-    public Statistica(int partiteVinte, int partitePerse, int partiteGiocate) {
-        this.partiteVinte = partiteVinte;
-        this.partitePerse = partitePerse;
-        this.partiteGiocate = partiteGiocate;
-    }
-
     public void addWin() {
         this.partiteVinte++;
         this.partiteGiocate++;

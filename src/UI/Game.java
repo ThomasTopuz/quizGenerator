@@ -23,7 +23,7 @@ public class Game {
     public static Quiz Start() {
         jollyUsed = false;
         System.out.println("------------------AREA GIOCO------------------");
-        System.out.println("REGOLE: \n 1. Se sbagli 1 risposta hai perso \n 2. Hai a disposizione 1 jolly per partita, questo ti permette di eliminare 2 risposte sbagliate, dita 'j' per usarlo");
+        System.out.println("REGOLE: \n 1. Se sbagli 1 risposta hai perso \n 2. Hai a disposizione 1 jolly per partita, questo ti permette di eliminare 2 risposte sbagliate, digita 'j' per usarlo");
         System.out.println("\nNome del quiz: " + q.getNome());
         giocaLivello(Livello.FACILE);
         giocaLivello(Livello.MEDIO);
