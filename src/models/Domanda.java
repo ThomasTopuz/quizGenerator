@@ -16,13 +16,11 @@ public class Domanda implements Serializable {
     }
 
     /**
-     * 
-     * @param titolo
-     * titolo della domanda
-     * @param risposte
-     * array di Risposte
-     * @param l
-     * livello della domanda
+     * oggetto domanda, rappresenta la domanda del quiz e ha un array di Risposta
+     *
+     * @param titolo   titolo della domanda
+     * @param risposte array di Risposte
+     * @param l        livello della domanda
      */
     public Domanda(String titolo, Risposta[] risposte, Livello l) {
         this.titolo = titolo;
@@ -44,11 +42,9 @@ public class Domanda implements Serializable {
 
     /**
      * indica se la lettera inserita (nella sezione gioco) è la risposta corretta
-     * @param lettera
-     * lettera inserita, a/b/c/d
-     * 
-     * @return
-     * valore boleano che indica se la risposta è corretta
+     *
+     * @param lettera lettera inserita come risposta nell'area di gioco, a/b/c/d
+     * @return valore boleano che indica se la risposta è corretta
      */
     public boolean isCorrect(String lettera) {
         ArrayList<String> lettere = new ArrayList<>(Arrays.asList("a", "b", "c", "d"));
@@ -62,9 +58,9 @@ public class Domanda implements Serializable {
     }
 
     /**
-     * ritorna due risposte incorrette della domanda, serve per poter utilizzare il jolly
-     * @return
-     * array di due elementi Risposta
+     * ritorna casualmente due risposte incorrette della domanda, serve per poter utilizzare il jolly
+     *
+     * @return array di due elementi Risposta
      */
     public Risposta[] getTwoWrong() {
         Risposta[] twoWrong = new Risposta[2];
@@ -95,9 +91,7 @@ public class Domanda implements Serializable {
     }
 
     /**
-     * 
-     * @return
-     * ritorna la domanda, con le risposte colorate, se corrette sono verdi, altrimenti sono rosse
+     * @return ritorna la domanda, con le risposte colorate, se corrette sono verdi, altrimenti sono rosse, utilizza il metodo toStringAdmin di Risposta
      */
     public String toStringAdmin() {
         String build = this.titolo + "\n";

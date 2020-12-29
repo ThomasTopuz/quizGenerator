@@ -16,20 +16,26 @@ public class Statistica implements Serializable {
     public Statistica() {
     }
 
+    /**
+     * metodo per registrare una partita vinta
+     */
     public void addWin() {
         this.partiteVinte++;
         this.partiteGiocate++;
     }
 
+    /**
+     * metodo per registrare una partita persa
+     */
     public void addLoss() {
         this.partitePerse++;
         this.partiteGiocate++;
     }
 
     /**
-     * 
-     * @return
-     * ratio partite vinte / perse
+     * metodo che ritoran il ratio delle partite vinte rispetto a quelle perse
+     *
+     * @return ratio partite vinte / perse
      */
     public double ratioVintePerse() {
         if (partitePerse == 0) { // avoid Exception
@@ -39,23 +45,25 @@ public class Statistica implements Serializable {
     }
 
     /**
-     * 
-     * @return
-     * percentuale di partite vinte
+     * metodo che calcola la percentuale di partite vinte del quiz
+     * @return percentuale di partite vinte
      */
     public double percVinte() {
         return Double.parseDouble(df.format((partiteVinte / partiteGiocate) * 100));
     }
 
     /**
-     * 
-     * @return
-     * percentuale di partite perse
+     * metodo che calcola la percentuale di partite perse  del quiz
+     * @return percentuale di partite perse
      */
     public double percPerse() {
         return Double.parseDouble(df.format((partitePerse / partiteGiocate) * 100));
     }
 
+    /**
+     *
+     * @return stringa con i dati statistici formattati
+     */
     @Override
     public String toString() {
         String build = "";
@@ -68,5 +76,5 @@ public class Statistica implements Serializable {
 
         return build;
     }
-    
+
 }

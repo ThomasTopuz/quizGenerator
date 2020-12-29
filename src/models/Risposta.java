@@ -11,10 +11,9 @@ public class Risposta implements Serializable {
 
     /**
      * risposta rappresenta una risposta relativa ad una domanda, ogni domanda ha 4 risposte
-     * @param titolo
-     * il titolo della risposta
-     * @param isCorrect
-     * valore boolean che indica se la risposta è quella corretta
+     *
+     * @param titolo il titolo della risposta
+     * @param isCorrect valore boolean che indica se la risposta è quella corretta
      */
     public Risposta(String titolo, boolean isCorrect) {
         this.titolo = titolo;
@@ -30,9 +29,7 @@ public class Risposta implements Serializable {
     }
 
     /**
-     * 
-     * @return
-     * stringa, se la risposta è corretta è di colore verde, altrimenti è rosso
+     * @return stringa, se la risposta è corretta è di colore verde, altrimenti è rosso
      */
     public String toStringAdmin() {
         //red--> wrong answare greeen-->correct answere

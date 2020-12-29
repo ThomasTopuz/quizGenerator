@@ -10,15 +10,17 @@ import java.util.ArrayList;
 public class Printer {
 
     /**
-     * stampa il quiz per l'area amministrativa, indicando le risposte corrette (verde) e quelle sbagliate (rosso)
-     * @param q
-     * quiz da stampare
+     * stampa il quiz per l'area amministrativa, indicando le risposte corrette (verde) e quelle sbagliate (rosso),
+     * utilizza il metodo toStringAdmin del Quiz
+     *
+     * @param q quiz da stampare
      */
     public static void PrintQuizAdmin(Quiz q) {
         if (q.getNome() == null) {
-            System.out.println("Non hai importato nessun quiz! \n");
+            System.out.println("Non hai importato/creato nessun quiz! \n");
             return;
         }
+
         System.out.println("Nome del quiz: " + q.getNome());
         System.out.println("\nDomande e risposte livello FACILE");
         printDomande(q.getDomandeByLevel(Livello.FACILE));
@@ -42,8 +44,8 @@ public class Printer {
      * funzione che stampa le domande di un livello indicando le risposte corrette con il colore verde,
      * e quelle sbagliate
      * con il rosso
-     * @param domande
-     * domande da stampare
+     *
+     * @param domande domande da stampare
      */
     private static void printDomande(ArrayList<Domanda> domande) {
         for (int i = 0; i < domande.size(); i++) {

@@ -44,12 +44,10 @@ public class Quiz implements Serializable {
 
     /**
      * aggiunge una domanda al quiz
-     * @param domanda
-     * titolo della domanda
-     * @param risposte
-     * array di risposte della domanda
-     * @param l
-     * livello della domanda
+     *
+     * @param domanda  titolo della domanda
+     * @param risposte array di risposte della domanda
+     * @param l        livello della domanda
      */
     public void addDomanda(String domanda, Risposta[] risposte, Livello l) {
         this.domande.add(new Domanda(domanda, risposte, l)); //auto increment id
@@ -57,19 +55,16 @@ public class Quiz implements Serializable {
 
     /**
      * rimuove una domanda dal quiz
-     * @param domanda
-     * domanda da rimuovere
+     *
+     * @param domanda domanda da rimuovere
      */
     public void removeDomanda(String domanda) {
         this.domande.remove(getDomandaByTitolo(domanda));
     }
 
     /**
-     * 
-     * @param titolo
-     * titolo della domanda
-     * @return
-     * Domanda con il titolo fornito
+     * @param titolo titolo della domanda
+     * @return Domanda con il titolo fornito
      */
     private Domanda getDomandaByTitolo(String titolo) {
         for (int i = 0; i < this.domande.size(); i++) {
@@ -81,11 +76,8 @@ public class Quiz implements Serializable {
     }
 
     /**
-     * 
-     * @param l
-     * livello che si sta giocando
-     * @return
-     * Arraylist di 4 Domanda, sono le 4 domande pescate dal livello l
+     * @param l livello che si sta giocando
+     * @return Arraylist di 4 Domanda, sono le 4 domande pescate dal livello l
      */
     public ArrayList<Domanda> getDomandeRandomFour(Livello l) {
         ArrayList<Domanda> domandeRandom = new ArrayList<>();
@@ -100,11 +92,8 @@ public class Quiz implements Serializable {
     }
 
     /**
-     * 
-     * @param l
-     * livello delle domande
-     * @return
-     * ArrayList di Domanda con il livello l
+     * @param l livello delle domande
+     * @return ArrayList di Domanda con il livello l
      */
     public ArrayList<Domanda> getDomandeByLevel(Livello l) {
         ArrayList<Domanda> domande = new ArrayList<>();
@@ -126,10 +115,8 @@ public class Quiz implements Serializable {
     }
 
     /**
-     * 
-     * @return
-     * stringa che rappresenta il quiz, a differenza del tostring normale,
-     *  questo indica con colori diversi risposte corrette (verdi) e sbagliate (rosse)
+     * @return stringa che rappresenta il quiz, a differenza del tostring normale,
+     * questo indica con colori diversi risposte corrette (verdi) e sbagliate (rosse)
      */
     public String toStringAdmin() {
         String build = "Quiz: " + nome + " \n";

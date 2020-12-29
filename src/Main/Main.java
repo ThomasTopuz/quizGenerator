@@ -5,6 +5,7 @@ import UI.Game;
 import UI.ImportExport;
 import UI.Printer;
 import models.Quiz;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,13 +13,11 @@ public class Main {
     public static Quiz q = new Quiz();
 
     public static void main(String[] args) {
-        q = ImportExport.readFromFile("v.bin");
-        Printer.PrintQuizAdmin(q);
         Start();
     }
 
     /**
-     * metodo start, per il menu principale
+     * metodo start, per il menu principale, permette di navigare tra la sezione amministrativa e l'area di gioco
      */
     public static void Start() {
         do {
@@ -29,7 +28,7 @@ public class Main {
             if (s.equals("1")) {
                 q = Admin.Start(q); // quiz manipulated
             } else if (s.equals("2")) {
-                q = Game.Start();
+                q = Game.Start(q);
             } else {
                 System.out.println("Scelta non valida! \n");
             }

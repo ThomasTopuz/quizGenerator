@@ -11,16 +11,22 @@ import java.util.Scanner;
 
 public class Game {
     static Scanner sc = new Scanner(System.in);
-    static Quiz q = Main.q;
+    static Quiz q;
     static boolean jollyUsed = false;
 
     /**
      * inizio del area di gioco
      * stampa le regole, e chiama le funzioni che permettono il gioco
-     * @return
-     * ritorna il quiz modificato nelle statistiche
+     *
+     * @return ritorna il quiz modificato nelle statistiche
      */
-    public static Quiz Start() {
+    public static Quiz Start(Quiz _q) {
+        q = _q;
+        if (q.getNome() == null) {
+            System.out.println("Non hai importato/creato nessun quiz! \n");
+            return q;
+        }
+
         jollyUsed = false;
         System.out.println("------------------AREA GIOCO------------------");
         System.out.println("REGOLE: \n 1. Se sbagli 1 risposta hai perso \n 2. Hai a disposizione 1 jolly per partita, questo ti permette di eliminare 2 risposte sbagliate, digita 'j' per usarlo");
@@ -35,10 +41,10 @@ public class Game {
     }
 
     /**
-     * funzione che fa giocare il livello, scorre l'arraylist di domande per il determinato livello e controlla che la risposta sia corretto o sbagliata
+     * funzione che fa giocare il livello, controlla se le varie risposte siano corrette o sbagliate
      * tiene traccia anche del jolly, uno per partita
-     * @param l
-     * livello da giocare
+     *
+     * @param l livello da giocare
      */
     private static void giocaLivello(Livello l) {
         System.out.println("\nLivello: " + l + "\n");
@@ -74,13 +80,11 @@ public class Game {
     }
 
     /**
-     *funzione che gestisce l'uso del jolly (1 per partita), ristampa domanda e risposte, indicando con il colore rosso
+     * funzione che gestisce l'uso del jolly (1 per partita), ristampa la domanda a cui non si è riscito a ripspondere, indicando con il colore rosso
      * due risposte sicuramente sbagliate di quella domanda
      *
-     * @param two
-     * due risposte sbagliate della domanda
-     * @param d
-     * la domanda
+     * @param two due risposte sbagliate della domanda
+     * @param d   la domanda
      */
     private static void jollyPrint(Risposta[] two, Domanda d) {
         System.out.println(d.getTitolo());
