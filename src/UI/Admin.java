@@ -52,6 +52,8 @@ public class Admin {
      * permette di creare un nuovo quiz da zero, scegliendone il nome
      */
     private static void creaNuovoQuiz() {
+        Quiz qnew = new Quiz();
+        q = qnew;
         boolean correct = false;
         String quizName = "";
         while (!correct) {
@@ -112,7 +114,7 @@ public class Admin {
         }
         boolean flag = true;
         while (flag) {
-            System.out.println("\nInserisci domanda " + (counter + 1) + ":");
+            System.out.print("\nInserisci domanda " + (counter + 1) + " (min 1 carattere): ");
             String questionName = sc.nextLine();
             Risposta[] risposte = createAnswareForQuestion(questionName);
             q.addDomanda(questionName, risposte, l);
@@ -279,6 +281,7 @@ public class Admin {
 
     /**
      * metodo che permette di eliminare una domanda per un determinato livello (se possibile)
+     *
      * @param l livello dove si trova la domanda da eliminare
      */
     private static void eliminaDomanda(Livello l) {

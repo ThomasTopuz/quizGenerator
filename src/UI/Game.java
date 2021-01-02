@@ -80,8 +80,8 @@ public class Game {
     }
 
     /**
-     * funzione che gestisce l'uso del jolly (1 per partita), ristampa la domanda a cui non si è riscito a ripspondere, indicando con il colore rosso
-     * due risposte sicuramente sbagliate di quella domanda
+     * funzione che gestisce l'uso del jolly (1 per partita), ristampa la domanda a cui non si è riscito a rispondere,
+     * escludendo due risposte sicuramente sbagliate di quella domanda
      *
      * @param two due risposte sbagliate della domanda
      * @param d   la domanda
@@ -90,10 +90,7 @@ public class Game {
         System.out.println(d.getTitolo());
         String[] prefix = {"a) ", "b) ", "c) ", "d) "};
         for (int i = 0; i < d.getRisposte().length; i++) {
-            if (d.getRisposte()[i].getTitolo().equals(two[0].getTitolo()) || d.getRisposte()[i].getTitolo().equals(two[1].getTitolo())) {
-                System.out.println("\t" + prefix[i] + "\u001B[31m" + d.getRisposte()[i].getTitolo() + "\u001B[0m" + "\n"); //red
-
-            } else {
+            if (!(d.getRisposte()[i].getTitolo().equals(two[0].getTitolo()) || d.getRisposte()[i].getTitolo().equals(two[1].getTitolo()))) {
                 System.out.println("\t" + prefix[i] + d.getRisposte()[i].getTitolo() + "\n");
             }
         }
