@@ -11,7 +11,7 @@ public class Statistica implements Serializable {
     private double partiteGiocate;
 
     /**
-     * la classe statistica è un attributo di Quiz, e serve per tenere traccia delle statistiche delle partite giocate
+     * la classe statistica e un attributo di Quiz, e serve per tenere traccia delle statistiche delle partite giocate
      */
     public Statistica() {
     }
@@ -46,6 +46,7 @@ public class Statistica implements Serializable {
 
     /**
      * metodo che calcola la percentuale di partite vinte del quiz
+     *
      * @return percentuale di partite vinte
      */
     public double percVinte() {
@@ -54,6 +55,7 @@ public class Statistica implements Serializable {
 
     /**
      * metodo che calcola la percentuale di partite perse  del quiz
+     *
      * @return percentuale di partite perse
      */
     public double percPerse() {
@@ -61,7 +63,6 @@ public class Statistica implements Serializable {
     }
 
     /**
-     *
      * @return stringa con i dati statistici formattati
      */
     @Override

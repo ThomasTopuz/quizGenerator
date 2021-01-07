@@ -46,8 +46,8 @@ public class Quiz implements Serializable {
      * aggiunge una domanda al quiz
      *
      * @param domanda  titolo della domanda
-     * @param risposte array di risposte della domanda
-     * @param l        livello della domanda
+     * @param risposte array di Risposta della domanda
+     * @param l        grado di difficolta della domanda
      */
     public void addDomanda(String domanda, Risposta[] risposte, Livello l) {
         this.domande.add(new Domanda(domanda, risposte, l)); //auto increment id

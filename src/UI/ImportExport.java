@@ -19,9 +19,10 @@ public class ImportExport {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName));
             os.writeObject(q);
             os.close();
-        } catch (
-                IOException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            System.out.println("File non trovato");
+        } catch (Exception e) {
+            System.out.println("Errore durante la scrittura del file.");
         }
     }
 
@@ -37,8 +38,10 @@ public class ImportExport {
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
             importedQuiz = (Quiz) is.readObject();
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.out.println("File non trovato!");
+        } catch (Exception e) {
+            System.out.println("Errore durate la lettura del file.");
         }
         return importedQuiz;
     }

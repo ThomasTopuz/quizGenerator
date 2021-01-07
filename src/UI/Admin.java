@@ -276,7 +276,6 @@ public class Admin {
             }
         }
         saveQuizEdited();
-        return;
     }
 
     /**
@@ -294,7 +293,6 @@ public class Admin {
         int num = Integer.parseInt(n);
         q.removeDomanda(domandeLivello.get(num - 1).getTitolo());
         saveQuizEdited();
-        return;
     }
 
     /**
@@ -306,7 +304,6 @@ public class Admin {
         fileName += ".bin";
         q = ImportExport.readFromFile(fileName);
         Printer.PrintQuizAdmin(q);
-        return;
     }
 
     /**
@@ -319,7 +316,6 @@ public class Admin {
         q.setFilename(fileName);
         ImportExport.saveToFile(fileName, q);
         Printer.PrintQuizAdmin(q);
-        return;
     }
 
 
@@ -331,7 +327,6 @@ public class Admin {
     private static void saveQuizEdited() {
         ImportExport.saveToFile(q.getFilename(), q);
         Printer.PrintQuizAdmin(q);
-        return;
     }
 
 
