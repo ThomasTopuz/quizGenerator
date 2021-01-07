@@ -32,9 +32,9 @@ public class Printer {
         printDomande(q.getDomandeByLevel(Livello.DIFFICILE));
 
         System.out.println("Statistiche:");
-        try {
+        if(q.getStats().getPartiteGiocate()>0){
             System.out.println(q.getStats());
-        } catch (Exception e) {
+        }else{
             System.out.println("Per avere le statistiche gioca almeno una partita! \n");
         }
 

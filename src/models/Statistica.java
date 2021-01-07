@@ -14,6 +14,18 @@ public class Statistica implements Serializable {
      * la classe statistica e un attributo di Quiz, e serve per tenere traccia delle statistiche delle partite giocate
      */
     public Statistica() {
+        this.partiteGiocate = 0;
+        this.partiteVinte = 0;
+        this.partitePerse = 0;
+    }
+
+    /**
+     * numero di tipo double che rappresenta il numero di partite giocate
+     *
+     * @return ritorna il numero di partite giocate
+     */
+    public double getPartiteGiocate() {
+        return this.partiteGiocate;
     }
 
     /**
@@ -37,7 +49,7 @@ public class Statistica implements Serializable {
      *
      * @return ratio partite vinte / perse
      */
-    public double ratioVintePerse() {
+    private double ratioVintePerse() {
         if (partitePerse == 0) { // avoid Exception
             return partiteVinte; // 4 vinte 0 perso --> ogni 0 perse ci sono 4 vinte
         }
@@ -49,7 +61,7 @@ public class Statistica implements Serializable {
      *
      * @return percentuale di partite vinte
      */
-    public double percVinte() {
+    private double percVinte() {
         return Double.parseDouble(df.format((partiteVinte / partiteGiocate) * 100));
     }
 
@@ -58,7 +70,7 @@ public class Statistica implements Serializable {
      *
      * @return percentuale di partite perse
      */
-    public double percPerse() {
+    private double percPerse() {
         return Double.parseDouble(df.format((partitePerse / partiteGiocate) * 100));
     }
 
