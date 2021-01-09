@@ -63,8 +63,9 @@ public class Quiz implements Serializable {
     }
 
     /**
+     * funzione per avere l'oggetto Domanda sapendone il titolo
      * @param titolo titolo della domanda
-     * @return Domanda con il titolo fornito
+     * @return Domanda che ha il titolo fornito
      */
     private Domanda getDomandaByTitolo(String titolo) {
         for (int i = 0; i < this.domande.size(); i++) {
@@ -76,6 +77,7 @@ public class Quiz implements Serializable {
     }
 
     /**
+     * funzione che serve per avere 4 domande casualmente pescate da dato livello di difficolta
      * @param l livello che si sta giocando
      * @return Arraylist di 4 Domanda, sono le 4 domande pescate dal livello l
      */
@@ -92,6 +94,7 @@ public class Quiz implements Serializable {
     }
 
     /**
+     * funzione per avere tutte le domande di un determinato grado di difficolta
      * @param l livello delle domande
      * @return ArrayList di Domanda con il livello l
      */
@@ -103,26 +106,5 @@ public class Quiz implements Serializable {
             }
         }
         return domande;
-    }
-
-    @Override
-    public String toString() {
-        String build = "Quiz: " + nome + " \n";
-        for (int i = 0; i < this.domande.size(); i++) {
-            build += "\t" + domande.get(i).toString() + "\n";
-        }
-        return build;
-    }
-
-    /**
-     * @return stringa che rappresenta il quiz, a differenza del tostring normale,
-     * questo indica con colori diversi risposte corrette (verdi) e sbagliate (rosse)
-     */
-    public String toStringAdmin() {
-        String build = "Quiz: " + nome + " \n";
-        for (int i = 0; i < this.domande.size(); i++) {
-            build += "\t" + domande.get(i).toStringAdmin() + "\n";
-        }
-        return build;
     }
 }

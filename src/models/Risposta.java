@@ -29,6 +29,7 @@ public class Risposta implements Serializable {
     }
 
     /**
+     * metodo per avere la risposta formattata in stringa (admin)
      * @return stringa, se la risposta è corretta è di colore verde, altrimenti è rosso
      */
     public String toStringAdmin() {
@@ -37,6 +38,10 @@ public class Risposta implements Serializable {
         return " " + titoloColored + "\n";
     }
 
+    /**
+     * metodo per avere la risposta formattata (area gioco)
+     * @return la risposta in una stringa formattata
+     */
     public String toString() {
         String titolo = this.titolo;
         return " " + titolo + "\n";

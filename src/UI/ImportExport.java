@@ -9,7 +9,8 @@ public class ImportExport {
     static Quiz q = Main.q;
 
     /**
-     * funzione per salvare il quiz su un file .bin
+     * funzione per salvare il quiz su un file .bin, gestisce l'eccezzione
+     * nel caso in cui un file non sia stato trovato
      *
      * @param fileName nome del file dove salvare il quiz
      * @param q        il quiz da salvare sul file

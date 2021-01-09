@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Printer {
 
     /**
-     * stampa il quiz dividendole nei vari livello di difficolta, indicando le risposte corrette (verde) e quelle sbagliate (rosso),
+     * stampa il quiz dividendole nei vari gradi di difficolta, indicando le risposte corrette (verde) e quelle sbagliate (rosso),
      * utilizza il metodo toStringAdmin del Quiz
      *
      * @param q quiz da stampare
@@ -35,7 +35,7 @@ public class Printer {
         if(q.getStats().getPartiteGiocate()>0){
             System.out.println(q.getStats());
         }else{
-            System.out.println("Per avere le statistiche gioca almeno una partita! \n");
+            System.out.println("Per avere le statistiche, gioca almeno una partita! \n");
         }
 
     }

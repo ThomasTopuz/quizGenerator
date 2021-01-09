@@ -15,10 +15,10 @@ public class Game {
     static boolean jollyUsed = false;
 
     /**
-     * inizio del area di gioco
+     * funzione per l'inizio dell'area di gioco
      * stampa le regole, e chiama le funzioni che permettono il gioco
      *
-     * @return ritorna il quiz modificato nelle statistiche
+     * @return ritorna il quiz aggiornato nelle statistiche
      */
     public static Quiz Start(Quiz _q) {
         q = _q;
@@ -44,7 +44,7 @@ public class Game {
      * funzione che fa giocare il livello, controlla se le varie risposte siano corrette o sbagliate
      * tiene traccia anche del jolly, uno per partita
      *
-     * @param l livello da giocare
+     * @param l grado di difficolta da giocare
      */
     private static void giocaLivello(Livello l) {
         System.out.println("\nLivello: " + l + "\n");

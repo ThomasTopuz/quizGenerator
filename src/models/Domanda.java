@@ -20,7 +20,7 @@ public class Domanda implements Serializable {
      *
      * @param titolo   titolo della domanda
      * @param risposte array di Risposte
-     * @param l        livello della domanda
+     * @param l        livello di difficolta della domanda
      */
     public Domanda(String titolo, Risposta[] risposte, Livello l) {
         this.titolo = titolo;
@@ -80,6 +80,10 @@ public class Domanda implements Serializable {
         return twoWrong;
     }
 
+    /**
+     * metodo per avere la domanda stampata, utilizzata nella area di gioco
+     * @return stringa formattata di domanda e le sue risposte
+     */
     @Override
     public String toString() {
         String build = this.titolo + "\n";

@@ -4,6 +4,7 @@ import UI.Admin;
 import UI.Game;
 import UI.ImportExport;
 import UI.Printer;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import models.Livello;
 import models.Quiz;
 import models.Risposta;
@@ -14,11 +15,9 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
     public static Quiz q = new Quiz();
-
     public static void main(String[] args) {
         Start();
     }
-
     /**
      * metodo start, per il menu principale, permette di navigare tra la sezione amministrativa e l'area di gioco
      */
@@ -29,9 +28,9 @@ public class Main {
             System.out.println("2. Giocare");
             String s = sc.nextLine();
             if (s.equals("1")) {
-                q = Admin.Start(q); // quiz manipulated
+                q = Admin.Start(q); // quiz manipolato
             } else if (s.equals("2")) {
-                q = Game.Start(q);
+                q = Game.Start(q); // quiz con le statistiche aggiornate
             } else {
                 System.out.println("Scelta non valida! \n");
             }
@@ -39,6 +38,12 @@ public class Main {
     }
 
 
+    /**
+     * metodo per creare un quiz per testare il programma
+     *
+     * @return
+     * quiz creato
+     */
     public static Quiz createTestingQuiz() {
         Quiz qTest = new Quiz("testing");
 
@@ -74,6 +79,22 @@ public class Main {
                 new Risposta("Saint. Tropez", false),
         };
         qTest.addDomanda("Capitale della francia?", r4, Livello.FACILE);
+        Risposta[] r42 = {
+                new Risposta("Marsilia", false),
+                new Risposta("Parigi", true),
+                new Risposta("Nizza", false),
+                new Risposta("Saint. Tropez", false),
+        };
+        qTest.addDomanda("Capitale della francia?", r42, Livello.FACILE);
+
+        Risposta[] rq = {
+                new Risposta("Antalya", false),
+                new Risposta("Ankara", true),
+                new Risposta("Istanbul", false),
+                new Risposta("Adana", false),
+        };
+        qTest.addDomanda("Capitale della turchia??", rq, Livello.FACILE);
+
 
         //MEDIO
         Risposta[] r1 = {
@@ -108,6 +129,14 @@ public class Main {
         };
         qTest.addDomanda("qualè l'acronimo di html?", r12, Livello.MEDIO);
 
+        Risposta[] r123 = {
+                new Risposta("aggiungere i files senza nome", false),
+                new Risposta("eliminare tutti i files", false),
+                new Risposta("aggiungere tutti i files", true),
+                new Risposta("elimina git dal computer", false),
+        };
+        qTest.addDomanda("a cosa serve il comando 'git add .'", r123, Livello.MEDIO);
+
         //difficile
         Risposta[] rr = {
                 new Risposta("mc os cataline", false),
@@ -123,13 +152,13 @@ public class Main {
                 new Risposta("2000", false),
         };
         qTest.addDomanda("quando è iniziata la prima guerra mondiale?", r21, Livello.DIFFICILE);
-        Risposta[] r123 = {
+        Risposta[] r1231 = {
                 new Risposta("1917", false),
                 new Risposta("1919", false),
                 new Risposta("1900", false),
                 new Risposta("1918", true),
         };
-        qTest.addDomanda("quando è finita la prima guerra mondiale?", r123, Livello.DIFFICILE);
+        qTest.addDomanda("quando è finita la prima guerra mondiale?", r1231, Livello.DIFFICILE);
         Risposta[] ra = {
                 new Risposta("1290", false),
                 new Risposta("1200", false),
@@ -137,6 +166,14 @@ public class Main {
                 new Risposta("1281", false),
         };
         qTest.addDomanda("quando è stato il patto del grutli?", ra, Livello.DIFFICILE);
+
+        Risposta[] ray = {
+                new Risposta("2000", false),
+                new Risposta("1999", false),
+                new Risposta("1901", false),
+                new Risposta("2001", true),
+        };
+        qTest.addDomanda("Quando è iniziato il 20esimo secolo?", ray, Livello.DIFFICILE);
         qTest.setFilename("testing.bin");
         return qTest;
     }

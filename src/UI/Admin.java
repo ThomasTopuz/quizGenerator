@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
-    static Scanner sc = new Scanner(System.in);
-    static Quiz q = Main.q; //import the quiz
+    private static Scanner sc = new Scanner(System.in);
+    private static Quiz q = Main.q; //import the quiz
 
     /**
-     * menu dell'area amministrativa
+     * funzione per il menu dell'area amministrativa, permette di scegliere cosa fare
      *
      * @param _q quiz da passare all'area amministrativa
      * @return il quiz modificato/creato/importato da un file
@@ -49,7 +49,7 @@ public class Admin {
     }
 
     /**
-     * permette di creare un nuovo quiz da zero, scegliendone il nome
+     * permette di creare un nuovo quiz da zero
      */
     private static void creaNuovoQuiz() {
         Quiz qnew = new Quiz();
@@ -81,9 +81,9 @@ public class Admin {
     }
 
     /**
-     * permette di creare la domanda per un determinato livello, minimo 4 domande per livello
+     * permette di creare le domanda per un determinato grado di difficolta, minimo 4 domande per grado
      *
-     * @param l livello della domanda da creare
+     * @param l grado della domanda da creare
      */
     private static void createQuestionsForLevel(Livello l) {
         int counter = 0;
@@ -179,7 +179,7 @@ public class Admin {
     }
 
     /**
-     * modifica il quiz, scelta del livello da modificare, per eliminare o aggiungere domande
+     * funzione per scegliere che grado di difficolta del quiz modificare
      */
     private static void modificaQuiz() {
         if (q.getNome() == null) {
@@ -206,11 +206,10 @@ public class Admin {
     }
 
     /**
-     * permette di scegliere se aggiungere una domanda o eliminare una domanda per il livello che si vuole modificare,
-     * nota che se il livello dato ha 4 domande,
-     * non sara possibile eliminarne ulteriori
+     * permette di scegliere se aggiungere una domanda o eliminare una domanda per il grado di difficolta che si vuole modificare,
+     * nota che se il grado dato ha 4 domande, non sara possibile eliminarne ulteriori
      *
-     * @param l il livello da modificare
+     * @param l il grado di difficolta da modificare
      */
     private static void modificaLivello(Livello l) {
         do {
@@ -235,9 +234,9 @@ public class Admin {
     }
 
     /**
-     * metodo per aggiungere una domanda ad un quiz (nella modalita di modifica)
+     * metodo per aggiungere una domanda ad un quiz (nella modalita di modifica di un quiz esistente)
      *
-     * @param l il livello dove aggiungere la domanda
+     * @param l il grado di difficolta della domanda
      */
     private static void aggiungiDomanda(Livello l) {
         boolean flag = true;
@@ -279,9 +278,9 @@ public class Admin {
     }
 
     /**
-     * metodo che permette di eliminare una domanda per un determinato livello (se possibile)
+     * metodo che permette di eliminare una domanda per un determinato grado di difficolta (se possibile)
      *
-     * @param l livello dove si trova la domanda da eliminare
+     * @param l grado di difficolta della domanda da eliminare
      */
     private static void eliminaDomanda(Livello l) {
         ArrayList<Domanda> domandeLivello = q.getDomandeByLevel(l);
@@ -296,7 +295,7 @@ public class Admin {
     }
 
     /**
-     * importare un quiz da un file
+     * funzione per importare un quiz da un file
      */
     private static void importQuiz() {
         System.out.print("Inserisci il nome del file (senza estensione): ");
@@ -307,7 +306,7 @@ public class Admin {
     }
 
     /**
-     * salvare il quiz creando un nuovo file
+     * funzione per salvare il quiz creando un nuovo file
      */
     private static void saveQuiz() {
         System.out.print("Hai creato/modificato il quiz, inserisci il nome del file dove lo vuoi salvare (senza estensione): ");
