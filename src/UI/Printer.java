@@ -1,6 +1,5 @@
 package UI;
 
-import Main.Main;
 import models.Domanda;
 import models.Livello;
 import models.Quiz;

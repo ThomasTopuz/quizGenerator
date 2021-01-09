@@ -2,13 +2,9 @@ package Main;
 
 import UI.Admin;
 import UI.Game;
-import UI.ImportExport;
-import UI.Printer;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import models.Livello;
 import models.Quiz;
 import models.Risposta;
-import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 
 import java.util.Scanner;
 
@@ -39,7 +35,7 @@ public class Main {
 
 
     /**
-     * metodo per creare un quiz per testare il programma
+     * metodo per creare un quiz manualmente per testare il programma
      *
      * @return
      * quiz creato
