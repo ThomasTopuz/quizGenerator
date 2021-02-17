@@ -26,7 +26,7 @@ public class Main {
             if (s.equals("1")) {
                 q = Admin.Start(q); // quiz manipolato
             } else if (s.equals("2")) {
-                q = Game.Start(q); // quiz con le statistiche aggiornate
+                q = Game.Start(q); // quizidea.inertial.smooth.scrolling.unit.increment con le statistiche aggiornate
             } else {
                 System.out.println("Scelta non valida! \n");
             }
